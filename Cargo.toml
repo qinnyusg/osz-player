@@ -1,0 +1,33 @@
+[package]
+name = "osu4k-player"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Offline osu!mania 4K beatmap player (.osz) built on egui + rosu-renderer"
+license = "MIT"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[dependencies]
+eframe = { version = "0.32.0", default-features = false, features = ["default_fonts", "glow"] }
+egui = "0.32.0"
+rosu-renderer = "1.2.3"
+rosu-map = "0.2.1"
+rosu-pp = "3.1.0"
+rodio = { version = "0.17", default-features = false, features = ["mp3", "vorbis", "wav", "flac"] }
+zip = { version = "0.6", default-features = false, features = ["deflate"] }
+rfd = { version = "0.15", default-features = false }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_UI_WindowsAndMessaging"] }
+
+# Local fork of rosu-renderer with an external-clock API; see
+# third_party/rosu-renderer/PATCHES.md.
+[patch.crates-io]
+rosu-renderer = { path = "third_party/rosu-renderer" }

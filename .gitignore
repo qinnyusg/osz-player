@@ -1,0 +1,17 @@
+# Build output
+/target/
+
+# Local, third-party content that must not be published:
+# osu! beatmaps (.osz, music), skins and other assets the user provided.
+/prepare/
+
+# Local packaging output (publish the exe/zip as a GitHub Release instead)
+/osu4k-player-portable/
+/osu4k-player-portable.zip
+
+# Runtime files created next to the executable
+/osu4k_player.ini
+/osu4k_player.ini.bak
+/selftest.log
+/startup_error.txt
+*.pdb
